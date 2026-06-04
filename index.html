@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>表达学堂｜课程介绍</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav-wrap">
+      <a class="brand" href="#home">
+        <span class="brand-icon">◆</span>
+        <span>表达学堂</span>
+        <em>让表达更有力量</em>
+      </a>
+      <nav class="nav">
+        <a href="#home">首页</a>
+        <a href="#about">公司介绍</a>
+        <a href="#courses">课程介绍</a>
+        <a href="#cases">学员案例</a>
+        <a href="#contact">关于我们</a>
+      </nav>
+      <a class="login-btn" href="#courses">下拉查看</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>让表达更有力量<br>让每一次表达都影响人心</h1>
+        <p>表达学堂专注于提升个人与团队的表达能力，通过系统化课程，帮助你在职场汇报、沟通、演讲中脱颖而出。</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#courses">探索课程</a>
+          <a class="ghost-btn" href="#about">了解我们</a>
+        </div>
+      </div>
+      <div class="hero-img"><img src="images/home-banner.jpg" alt="表达学堂课程场景"></div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>公司介绍</h2>
+      <p class="section-desc">表达学堂致力于打造专业的表达力提升平台，我们拥有经验丰富的讲师团队，已帮助众多学员提升表达能力，广泛应用于职场汇报、演讲演说、面试沟通、销售谈判等场景。</p>
+      <div class="features">
+        <div class="feature"><span>👥</span><h3>专业团队</h3><p>资深讲师团队，多年教学经验</p></div>
+        <div class="feature"><span>📘</span><h3>系统课程</h3><p>科学课程体系，循序渐进提升</p></div>
+        <div class="feature"><span>🎯</span><h3>实战训练</h3><p>大量实战演练，学以致用</p></div>
+        <div class="feature"><span>👍</span><h3>学员认可</h3><p>真实学员好评，口碑见证实力</p></div>
+      </div>
+    </section>
+
+    <section class="courses" id="courses">
+      <h2>热门课程</h2>
+      <p class="section-desc">选择适合你的课程，开启表达提升之旅。点击“查看介绍”可弹出课程详情。</p>
+      <div class="course-grid">
+
+        <article class="course-card">
+          <img src="images/shuofu.jpg" alt="高效沟通技巧课">
+          <div class="course-body">
+            <h3>说服高手实战营</h3>
+            <p>提升沟通效率，化解冲突，建立良好人际关系。</p>
+            <strong>¥5600</strong>
+            <div class="card-actions">
+              <button onclick="openCourse(0)">查看介绍</button>
+              <a href="https://s.bluedothub.cn/VM5bxbV" target="_blank">购买课程</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="images/biaoda.jpg" alt="当众演讲训练营">
+          <div class="course-body">
+            <h3>表达高手实战营</h3>
+            <p>克服紧张，自信开口，掌握演讲逻辑与感染力，让你的汇报更有价值。</p>
+            <strong>¥5600</strong>
+            <div class="card-actions">
+              <button onclick="openCourse(1)">查看介绍</button>
+              <a href="https://s.bluedothub.cn/Vd4vapV" target="_blank">购买课程</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="images/huang.jpg" alt="职场汇报实战课">
+          <div class="course-body">
+            <h3>黄执中说服表达系列课</h3>
+            <p>结构化汇报，突出重点，让你的汇报更有价值。</p>
+            <strong>¥8800</strong>
+            <div class="card-actions">
+              <button onclick="openCourse(2)">查看介绍</button>
+              <a href="https://example.com/buy-report" target="_blank">购买课程</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <a class="more-btn" href="#courses">查看更多课程 →</a>
+    </section>
+
+    <section class="cta">
+      <div><span>🎓</span><h2>现在就开始提升你的表达能力</h2><p>加入表达学堂，让你的表达成为影响力。</p></div>
+      <a href="https://s.bluedothub.cn/Ea4LaaK" target="_blank">立即报名</a>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-brand"><strong>表达学堂</strong><p>让表达更有力量</p></div>
+    <div><h4>快速导航</h4><a href="#home">首页</a><a href="#courses">课程介绍</a><a href="#about">公司介绍</a></div>
+    <div><h4>帮助中心</h4><a href="#">常见问题</a><a href="#">学习指南</a><a href="#">售后服务</a></div>
+    <div><h4>关注我们</h4><p>微信 / 微博 / 社群</p></div>
+    <p class="copyright">© 2026 表达学堂 | 线上课程专享</p>
+  </footer>
+
+  <div class="modal" id="courseModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeCourse()">×</button>
+      <img id="modalImage" src="images/shuofu-detail.jpg" alt="课程详情图">
+      <h3 id="modalTitle">课程标题</h3>
+      <p id="modalText">课程介绍</p>
+      <a id="modalBuy" class="primary-btn" target="_blank">立即购买</a>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
