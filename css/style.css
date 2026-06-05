@@ -449,3 +449,75 @@ a {
         display: none;
     }
 }
+
+.feature {
+    text-align: left;
+    padding: 28px;
+}
+
+.feature span {
+    display: inline-flex;
+    width: 58px;
+    height: 58px;
+    align-items: center;
+    justify-content: center;
+    background: #eff6ff;
+    border-radius: 50%;
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.feature h3 {
+    font-size: 22px;
+    color: #10264f;
+    margin: 0 0 10px;
+}
+
+.feature p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 18px;
+}
+
+.feature ul {
+    list-style: none;
+    padding: 16px 0 0;
+    margin: 0;
+    border-top: 1px dashed #dbeafe;
+}
+
+.feature li {
+    font-size: 14px;
+    color: #475569;
+    line-height: 2;
+}
+
+.feature li::before {
+    content: "✓";
+    color: #2563eb;
+    font-weight: 900;
+    margin-right: 8px;
+}
+
+.coach-team {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 70px 24px;
+    text-align: center;
+}
+
+.coach-team-card {
+    margin-top: 40px;
+    background: white;
+    border-radius: 26px;
+    overflow: hidden;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(15,43,95,.08);
+}
+
+.coach-team-card img {
+    width: 100%;
+    display: block;
+    border-radius: 18px;
+}
