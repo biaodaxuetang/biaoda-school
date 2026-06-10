@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>表达学堂｜表达成长课程方案</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .hero {
+      align-items: center;
+      gap: 80px;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .hero-text h1 {
+      font-size: 56px;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 28px;
+    }
+
+    .hero-text > p:not(.hero-tag) {
+      font-size: 20px;
+      line-height: 1.9;
+      color: #475569;
+      max-width: 520px;
+    }
+
+    .hero-img img {
+      border-radius: 28px;
+    }
+
+    #wechatModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #wechatModal.show {
+      display: flex;
+    }
+
+    #wechatModal .qr-modal {
+      width: 420px;
+      max-width: 92%;
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+    }
+
+    #wechatModal h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .qr-subtitle {
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .wechat-qr {
+      width: 260px;
+      border-radius: 20px;
+      margin: 0 auto 20px;
+      display: block;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    .scan-tip {
+      background: #f4f7ff;
+      padding: 16px;
+      border-radius: 14px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .safe-tip {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .course-card .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .course-card .card-actions button,
+    .course-card .card-actions a {
+      min-height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .course-card .card-actions button {
+      background: #f3f6fb;
+      color: #334155;
+    }
+
+    .course-card .card-actions a {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .course-card .course-body p {
+      min-height: 72px;
+    }
+
+    .faq {
+      max-width: 1180px;
+      margin: 110px auto;
+      padding: 0 24px;
+    }
+
+    .faq-wrap {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .faq-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #eef4ff;
+      color: #2563eb;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .faq-left h2 {
+      font-size: 48px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #0f172a;
+    }
+
+    .faq-left p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #64748b;
+    }
+
+    .faq-list {
+      background: #fff;
+      border-radius: 28px;
+      padding: 12px 36px;
+      box-shadow: 0 16px 50px rgba(15,23,42,.06);
+    }
+
+    .faq-row {
+      padding: 28px 0;
+      border-bottom: 1px solid #e5eaf3;
+    }
+
+    .faq-row:last-child {
+      border-bottom: none;
+    }
+
+    .faq-row h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .faq-row p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #64748b;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        gap: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 40px;
+      }
+
+      .faq-wrap {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .faq-left h2 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav-wrap">
+      <a class="brand" href="#home">
+        <span class="brand-icon">◆</span>
+        <span>表达学堂</span>
+        <em>让表达更有力量</em>
+      </a>
+
+      <nav class="nav">
+        <a href="#home">首页</a>
+        <a href="#about">为什么继续学习</a>
+        <a href="#cases">导师团队</a>
+        <a href="#courses">课程方案</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+
+      <a class="login-btn" href="javascript:void(0)" onclick="openWechat()">咨询课程顾问</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-tag">表达学堂正式课方案</p>
+
+        <h1>体验之后，<br>是时候系统升级表达能力</h1>
+
+        <p>
+          如果你已经发现：表达不是天赋，而是可以训练的方法。
+          那么下一步，就是通过系统课程、持续练习和反馈，
+          把“听懂”变成真正会用。
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="javascript:void(0)" onclick="openWechat()">咨询课程顾问</a>
+          <a class="ghost-btn" href="#courses">查看课程方案</a>
+        </div>
+      </div>
+
+      <div class="hero-img">
+        <img src="images/home-banner.jpg" alt="表达学堂课程场景">
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>为什么很多学员体验后，决定继续学习？</h2>
+
+      <p class="section-desc">
+        很多人会在体验课后发现：原来自己不会表达，不是因为不聪明，
+        而是因为从来没有接受过系统训练。体验课只是开始，
+        真正的改变来自持续练习与反馈。
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <span>📘</span>
+          <h3>系统方法论</h3>
+          <p>不是技巧堆积，而是底层升级</p>
+          <ul>
+            <li>建立表达逻辑</li>
+            <li>提升结构化表达</li>
+            <li>学会真实沟通</li>
+          </ul>
+        </div>
+
+        <div class="feature">
+          <span>🎯</span>
+          <h3>真实场景训练</h3>
+          <p>围绕高频人生场景练习</p>
+          <ul>
+            <li>开会汇报</li>
+            <li>关系沟通</li>
+            <li>公众表达</li>
+          </ul>
+        </div>
+
+        <div class="feature">
+          <span>📝</span>
+          <h3>反馈式成长</h3>
+          <p>真正改变来自持续练习</p>
+          <ul>
+            <li>练习与点评</li>
+            <li>复盘与修正</li>
+            <li>长期成长</li>
+          </ul>
+        </div>
+
+        <div class="feature">
+          <span>✨</span>
+          <h3>真实改变发生</h3>
+          <p>很多变化，从表达开始</p>
+          <ul>
+            <li>更敢表达</li>
+            <li>更有逻辑</li>
+            <li>更有影响力</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="coach-team" id="cases">
+      <h2>跟谁一起练表达？</h2>
+
+      <p class="section-desc">
+        表达学堂持续围绕“思辨 × 沟通 × 表达 × 影响力”建立系统表达训练路径。
+        你熟悉的老师只是开始，真正帮助你成长的，是长期训练与反馈。
+      </p>
+
+      <div class="coach-team-card">
+        <img src="images/coach-team.jpg" alt="表达学堂教练团队">
+      </div>
+    </section>
+
+    <section class="courses" id="courses">
+      <h2>找到适合你的表达成长路径</h2>
+
+      <p class="section-desc">
+        体验课只是开始。真正的成长，来自系统训练。
+        你可以根据自己的表达目标，选择适合自己的课程方案。
+      </p>
+
+      <div class="course-grid">
+        <article class="course-card">
+          <img src="images/shuofu.jpg" alt="说服高手实战营">
+          <div class="course-body">
+            <h3>说服高手实战营</h3>
+            <p>适合想提升关系沟通、说服表达与影响力的人。</p>
+            <strong>¥5600</strong>
+
+            <div class="card-actions">
+              <button onclick="openCourse(0)">查看介绍</button>
+              <a href="https://s.bluedothub.cn/VM5bxbV" target="_blank">立即报名</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="images/biaoda.jpg" alt="表达高手实战营">
+          <div class="course-body">
+            <h3>表达高手实战营</h3>
+            <p>适合想解决汇报不清、表达不稳、开口紧张的人。</p>
+            <strong>¥5600</strong>
+
+            <div class="card-actions">
+              <button onclick="openCourse(1)">查看介绍</button>
+              <a href="https://s.bluedothub.cn/Vd4vapV" target="_blank">立即报名</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="images/huang.jpg" alt="黄执中说服表达系列课">
+          <div class="course-body">
+            <h3>黄执中说服表达系列课</h3>
+            <p>适合想提升高阶说服、公众表达与影响力的人。</p>
+            <strong>¥8800</strong>
+
+            <div class="card-actions">
+              <button onclick="openCourse(2)">查看介绍</button>
+              <a href="https://s.bluedothub.cn/Ea4LaaK" target="_blank">直接报名</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="faq-wrap">
+        <div class="faq-left">
+          <span class="faq-tag">FAQ</span>
+          <h2>你可能<br>关心的问题</h2>
+          <p>关于课程、学习效果与适合人群，我们提前帮你回答。</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-row">
+            <h3>我内向，也适合学表达吗？</h3>
+            <p>适合。好的表达不是变外向，而是更清晰、更稳定地表达自己。</p>
+          </div>
+
+          <div class="faq-row">
+            <h3>正式课和体验课有什么区别？</h3>
+            <p>体验课帮助你建立认知，正式课帮助你通过持续训练真正改变。</p>
+          </div>
+
+          <div class="faq-row">
+            <h3>为什么课程是 5600 / 8800？</h3>
+            <p>表达能力是长期能力，价值体现在职场、关系、沟通与影响力提升中。</p>
+          </div>
+
+<div class="faq-row">
+  <h3>我该选哪门课？</h3>
+
+  <p>
+    <strong>如果你经常：</strong><br>
+    不会聊天、关系容易卡住、沟通容易被误解、说服别人总失败<br>
+    → 推荐选择：<strong>说服高手实战营（¥5600）</strong>
+    <br><br>
+
+    <strong>如果你经常：</strong><br>
+    开会不敢说、汇报没重点、脑子有东西却表达不出来<br>
+    → 推荐选择：<strong>表达高手实战营（¥5600）</strong>
+    <br><br>
+
+    <strong>如果你已经有基础，希望：</strong><br>
+    提升影响力、公众表达、说服能力、管理表达<br>
+    → 推荐选择：<strong>黄执中说服表达系列课（¥8800）</strong>
+  </p>
+</div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-brand">
+      <strong>表达学堂</strong>
+      <p>让表达更有力量</p>
+    </div>
+
+    <div>
+      <h4>快速导航</h4>
+      <a href="#home">首页</a>
+      <a href="#courses">课程方案</a>
+      <a href="#about">为什么继续学习</a>
+    </div>
+
+    <div>
+      <h4>帮助中心</h4>
+      <a href="#faq">常见问题</a>
+      <a href="#courses">课程介绍</a>
+     <button
+  id="modalBuy"
+  class="primary-btn"
+  type="button"
+  onclick="event.preventDefault(); event.stopPropagation(); closeCourse(); openWechat();">
+  咨询课程顾问
+</button>
+    </div>
+
+    <div>
+      <h4>关注我们</h4>
+      <p>微信 / 微博 / 社群</p>
+    </div>
+
+    <p class="copyright">© 2026 表达学堂 | 线上课程专享</p>
+  </footer>
+
+  <div class="modal" id="courseModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeCourse()">×</button>
+      <img id="modalImage" src="images/shuofu-detail.jpg" alt="课程详情图">
+      <h3 id="modalTitle">课程标题</h3>
+      <p id="modalText">课程介绍</p>
+      <a id="modalBuy" class="primary-btn" href="javascript:void(0)" onclick="openWechat()">咨询课程顾问</a>
+    </div>
+  </div>
+
+  <div class="modal" id="wechatModal" aria-hidden="true">
+    <div class="modal-card qr-modal">
+      <button class="modal-close" onclick="closeWechat()">×</button>
+
+      <h2>添加课程顾问</h2>
+
+      <p class="qr-subtitle">
+        咨询适合你的课程方案<br>
+        获取学习建议与报名指引
+      </p>
+
+      <img src="images/wechat-qr.png" alt="课程顾问二维码" class="wechat-qr">
+
+      <div class="scan-tip">
+        <strong>扫码方式：</strong><br>
+        微信扫码添加<br>
+        或长按保存二维码后微信识别
+      </div>
+
+      <div class="safe-tip">🔒 仅用于课程咨询，不会骚扰</div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+
+  <script>
+    function openWechat() {
+      const modal = document.getElementById('wechatModal');
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeWechat() {
+      const modal = document.getElementById('wechatModal');
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    window.addEventListener('click', function(e) {
+      const wechatModal = document.getElementById('wechatModal');
+      if (e.target === wechatModal) {
+        closeWechat();
+      }
+    });
+  </script>
+</body>
+</html>
+
