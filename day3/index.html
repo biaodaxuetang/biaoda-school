@@ -345,7 +345,7 @@
 
             <div class="card-actions">
               <button onclick="openCourse(0)">查看介绍</button>
-              <a href="https://s.bluedothub.cn/VM5bxbV" target="_blank">立即报名</a>
+              <a href="https://s.bluedothub.cn/VM5bxbV" target="_blank" onclick="sendReminder('立即报名：说服高手实战营')">立即报名</a>
             </div>
           </div>
         </article>
@@ -359,7 +359,7 @@
 
             <div class="card-actions">
               <button onclick="openCourse(1)">查看介绍</button>
-              <a href="https://s.bluedothub.cn/Vd4vapV" target="_blank">立即报名</a>
+              <a href="https://s.bluedothub.cn/Vd4vapV" target="_blank" onclick="sendReminder('立即报名：表达高手实战营')">立即报名</a>
             </div>
           </div>
         </article>
@@ -373,7 +373,7 @@
 
             <div class="card-actions">
               <button onclick="openCourse(2)">查看介绍</button>
-              <a href="https://s.bluedothub.cn/Ea4LaaK" target="_blank">直接报名</a>
+              <a href="https://s.bluedothub.cn/Ea4LaaK" target="_blank" onclick="sendReminder('直接报名：黄执中说服表达系列课')">直接报名</a>
             </div>
           </div>
         </article>
@@ -499,7 +499,56 @@
   <script src="js/script.js"></script>
 
   <script>
+    // ================================
+    // 官网点击提醒系统配置
+    // 1）把下面的 URL 替换成你的腾讯云函数 URL
+    // 2）王老师测试入口：官网地址后面加 ?sid=wang
+    // ================================
+    const REMINDER_API_URL = "https://1440334414-1wpkw2uyf3.ap-guangzhou.tencentscf.com";
+    const DEFAULT_SALES_ID = "wang";
+
+    // 进入官网时读取 sid，并保存客户归属
+    (function saveSalesId() {
+      const params = new URLSearchParams(window.location.search);
+      const sid = params.get('sid');
+      if (sid) {
+        localStorage.setItem('sales_id', sid);
+      } else if (!localStorage.getItem('sales_id')) {
+        localStorage.setItem('sales_id', DEFAULT_SALES_ID);
+      }
+    })();
+
+    // 发送提醒到腾讯云函数，再由云函数转发到企业微信群机器人
+    function sendReminder(actionName) {
+      if (!REMINDER_API_URL || REMINDER_API_URL.includes('请替换')) {
+        console.warn('请先替换 REMINDER_API_URL 为腾讯云函数 URL');
+        return;
+      }
+
+      const sid = localStorage.getItem('sales_id') || DEFAULT_SALES_ID;
+      const payload = {
+        sid: sid,
+        action: actionName,
+        page: window.location.href,
+        title: document.title,
+        time: new Date().toLocaleString('zh-CN', { hour12: false })
+      };
+
+      // 使用 no-cors + text/plain，避免浏览器跨域预检导致发送失败
+      fetch(REMINDER_API_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=UTF-8'
+        },
+        body: JSON.stringify(payload)
+      }).catch(function(err) {
+        console.error('提醒发送失败：', err);
+      });
+    }
+
     function openWechat() {
+      sendReminder('咨询课程顾问');
       const modal = document.getElementById('wechatModal');
       modal.classList.add('show');
       modal.setAttribute('aria-hidden', 'false');
