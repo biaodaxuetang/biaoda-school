@@ -19,7 +19,49 @@ const courses = [
   }
 ];
 
+/* =========================
+   统一配置
+========================= */
+const REMINDER_API_URL = "https://你的云函数地址";
+const DEFAULT_SALES_ID = "wang";
+
+/* =========================
+   初始化 sid
+========================= */
+(function () {
+  const sid = new URLSearchParams(location.search).get("sid");
+  if (sid) localStorage.setItem("sales_id", sid);
+  if (!localStorage.getItem("sales_id")) {
+    localStorage.setItem("sales_id", DEFAULT_SALES_ID);
+  }
+})();
+
+/* =========================
+   只发“行为数据”（关键修复）
+========================= */
+function sendReminder(action) {
+
+  const payload = {
+    sid: localStorage.getItem("sales_id"),
+    action: action,
+    page: location.href,
+    title: document.title
+  };
+
+  fetch(REMINDER_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+}
+
+/* =========================
+   打开课程
+========================= */
 function openCourse(index) {
+
   const course = courses[index];
 
   document.getElementById("modalImage").src = course.image;
@@ -28,14 +70,10 @@ function openCourse(index) {
   document.getElementById("modalBuy").href = course.buy;
 
   document.getElementById("courseModal").style.display = "flex";
+
+  sendReminder("查看课程：" + course.title);
 }
 
 function closeCourse() {
   document.getElementById("courseModal").style.display = "none";
 }
-
-document.getElementById("courseModal").addEventListener("click", function(event) {
-  if (event.target.id === "courseModal") {
-    closeCourse();
-  }
-});
